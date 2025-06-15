@@ -62,6 +62,7 @@ jobs:
         else
           cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         fi
+        shell: bash
     
     - name: Build
       run: cmake --build build --config ${{ matrix.build_type }}
