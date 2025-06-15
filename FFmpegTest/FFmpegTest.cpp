@@ -29,6 +29,7 @@ typedef enum {
 
 #define DEFAULT_AV_SYNC_TYPE AV_SYNC_VIDEO_MASTER
 
+#include <chrono>
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -43,7 +44,7 @@ extern "C" {
 #include <SDL_thread.h>
 #include <libavutil/avstring.h>
 #include <libavutil/time.h>
-#include <chrono>
+
 }
 
 using namespace std;
