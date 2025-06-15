@@ -1,5 +1,4 @@
-﻿name: Build FFmpegTest
-
+name: Build FFmpegTest
 
 on:
   push:
@@ -58,25 +57,34 @@ jobs:
     
     - name: Configure CMake
       run: |
-        cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        if [ "${{ matrix.os }}" == "macos-latest" ]; then
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_CXX_FLAGS="-D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS"
+        else
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        fi
     
     - name: Build
       run: cmake --build build --config ${{ matrix.build_type }}
     
     - name: Test executable exists
       run: |
+        echo "📁 Build directory structure:"
+        ls -la build/ || true
+        ls -la build/bin/ || true
+        echo ""
+        
         if [ "${{ matrix.os }}" == "windows-latest" ]; then
-          if [ -f "build/${{ matrix.build_type }}/FFmpegTest.exe" ]; then
-            echo "✅ Windows executable built successfully"
+          if [ -f "build/bin/FFmpegTest.exe" ]; then
+            echo "✅ Windows executable found at build/bin/FFmpegTest.exe"
           else
-            echo "❌ Windows executable not found"
+            echo "❌ Windows executable not found at build/bin/FFmpegTest.exe"
             exit 1
           fi
         else
-          if [ -f "build/FFmpegTest" ]; then
-            echo "✅ Unix executable built successfully"
+          if [ -f "build/bin/FFmpegTest" ]; then
+            echo "✅ Unix executable found at build/bin/FFmpegTest"
           else
-            echo "❌ Unix executable not found"
+            echo "❌ Unix executable not found at build/bin/FFmpegTest"
             exit 1
           fi
         fi
@@ -86,9 +94,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: FFmpegTest-${{ matrix.os }}-${{ matrix.build_type }}
-        path: |
-          build/FFmpegTest*
-          build/${{ matrix.build_type }}/FFmpegTest*
+        path: build/bin/FFmpegTest*
         retention-days: 30
     
     - name: Upload Windows DLLs
