@@ -20,10 +20,10 @@ set_target_properties(FFmpegTest PROPERTIES
 # Platform-specific library handling
 if(WIN32)
     # Windows: Use provided libraries
-    set(FFMPEG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/FFmpegTest/ffmpeg/include")
-    set(FFMPEG_LIBRARY_DIR "${CMAKE_SOURCE_DIR}/FFmpegTest/ffmpeg/lib")
-    set(SDL2_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/FFmpegTest/sdl2/include")
-    set(SDL2_LIBRARY_DIR "${CMAKE_SOURCE_DIR}/FFmpegTest/sdl2/lib")
+    set(FFMPEG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/ffmpeg/include")
+    set(FFMPEG_LIBRARY_DIR "${CMAKE_SOURCE_DIR}/ffmpeg/lib")
+    set(SDL2_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/sdl2/include")
+    set(SDL2_LIBRARY_DIR "${CMAKE_SOURCE_DIR}/sdl2/lib")
     
     # Specify the include directories
     include_directories(${FFMPEG_INCLUDE_DIR})
