@@ -31,6 +31,9 @@ typedef enum {
 
 #include <chrono>
 
+#include <SDL.h>
+#include <SDL_thread.h>
+
 extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
@@ -40,8 +43,6 @@ extern "C" {
 #include <libavutil/opt.h>
 #include <libavutil/channel_layout.h>
 #include <libavutil/fifo.h>
-#include <SDL.h>
-#include <SDL_thread.h>
 #include <libavutil/avstring.h>
 #include <libavutil/time.h>
 
