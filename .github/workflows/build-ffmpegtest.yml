@@ -45,11 +45,11 @@ jobs:
     - name: Verify Windows libraries exist
       if: matrix.os == 'windows-latest'
       run: |
-        if (!(Test-Path "FFmpegTest/ffmpeg/lib/avcodec.lib")) {
+        if (!(Test-Path "ffmpeg/lib/avcodec.lib")) {
           Write-Error "FFmpeg libraries not found! Make sure to commit the Windows libraries to the repo."
           exit 1
         }
-        if (!(Test-Path "FFmpegTest/sdl2/lib/SDL2.lib")) {
+        if (!(Test-Path "sdl2/lib/SDL2.lib")) {
           Write-Error "SDL2 libraries not found! Make sure to commit the Windows libraries to the repo."
           exit 1
         }
