@@ -1,4 +1,4 @@
-﻿# CMakeList.txt : CMake project for FFmpegTest, include source and define
+# CMakeList.txt : CMake project for FFmpegTest, include source and define
 # project specific logic here.
 #
 cmake_minimum_required (VERSION 3.12)
@@ -9,6 +9,13 @@ add_executable (FFmpegTest "FFmpegTest.cpp" "FFmpegTest.h")
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET FFmpegTest PROPERTY CXX_STANDARD 20)
 endif()
+
+# Set output directory for executables
+set_target_properties(FFmpegTest PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    RUNTIME_OUTPUT_DIRECTORY_DEBUG "${CMAKE_BINARY_DIR}/bin"
+    RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/bin"
+)
 
 # Platform-specific library handling
 if(WIN32)
